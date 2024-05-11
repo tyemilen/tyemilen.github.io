@@ -45,7 +45,6 @@ function updateStars() {
 }
 
 const resizeObserver = new ResizeObserver(entries => {
-	console.log('ee')
 	for (const entry of entries) {
 		const main = entry.target;
 
