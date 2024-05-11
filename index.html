@@ -1,0 +1,122 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Me</title>
+
+	<link rel="preconnect" href="https://stijndv.com">
+	<link rel="stylesheet" href="https://stijndv.com/fonts/Eudoxus-Sans.css">
+	<link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+	<link rel="stylesheet/less" type="text/css" href="css/styles.less" />
+	<script src="https://cdn.jsdelivr.net/npm/less" ></script>
+	<script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <main>
+		<header>
+			<div class="header-section">
+				<code>/me</code>
+			</div>
+			<div class="header-section">
+				<div class="link">
+					<a target="_blank" href="https://github.com/tyemilen">
+						<i class="devicon-github-original"></i>
+					</a>
+				</div>
+			</div>
+		</header>
+		<canvas id="stars"></canvas>
+		<div id="about">
+			<div id="about-author">
+				<img id="avatar" src="https://github.com/tyemilen.png" />
+				<div id="emoji-container"></div>
+			</div>
+			<p>I make stuff</p>
+			<h2>Skills</h2>
+			<div id="about-skills">
+				<div data-tooltip="Javascript" class="icon">
+					<i class="devicon-javascript-plain"></i>
+				</div>
+				<div data-tooltip="Typescript" class="icon">
+					<i class="devicon-typescript-plain"></i>
+				</div>
+				<div data-tooltip="Fastify" class="icon">
+					<i data-tooltip="Fastify" class="devicon-fastify-plain"></i>
+				</div>
+				<div data-tooltip="Express" class="icon">
+					<i data-tooltip="Express" class="devicon-express-original"></i>
+				</div>
+				<div data-tooltip="Nestjs" class="icon">
+					<i class="devicon-nestjs-original"></i>
+				</div>
+				<div data-tooltip="Vue" class="icon">
+					<i class="devicon-vuejs-plain"></i>
+				</div>
+				<div data-tooltip="Supabase" class="icon">
+					<i class="devicon-supabase-plain"></i>
+				</div>
+				<div data-tooltip="Tailwind" class="icon">
+					<i class="devicon-tailwindcss-original"></i>
+				</div>
+				<div data-tooltip="CSS" class="icon">
+					<i class="devicon-css3-plain"></i>
+				</div>
+				<div data-tooltip="HTML" class="icon">
+					<i class="devicon-html5-plain"></i>
+				</div>
+				<div data-tooltip="PostgreSQL" class="icon">
+					<i class="devicon-postgresql-plain"></i>
+				</div>
+				<div data-tooltip="SQLite" class="icon">
+					<i class="devicon-sqlite-plain"></i>
+				</div>
+				<div data-tooltip="Git" class="icon">
+					<i class="devicon-git-plain"></i>
+				</div>
+			</div>
+			<h2></h2>
+			<div id="about-skills">
+				<div data-tooltip="C++" class="icon">
+					<i class="devicon-cplusplus-plain"></i>
+				</div>
+				<div data-tooltip="Arduino" class="icon">
+					<i class="devicon-arduino-plain"></i>
+				</div>
+				<div data-tooltip="Bash" class="icon">
+					<i class="devicon-bash-plain"></i>
+				</div>
+			</div>
+			<h2>Projects</h2>
+			<div id="about-projects">
+				<!-- Init using js in github.js -->
+			</div>
+		</div>
+	</main>
+	<script src="js/background.js"></script>
+	<script src="js/github.js"></script>
+	<script>
+		// https://apps.timwhitlock.info/emoji/tables/unicode
+		// https://www.unicode.org/Public/UNIDATA/EmojiSources.txt
+		const emoticonStart = '1F601';
+		const emoticonEnd = '1F64F'
+		const getRandomEmoji = () => {
+			const start = parseInt(emoticonStart, 16);
+			const end = parseInt(emoticonEnd, 16);
+
+			return String.fromCodePoint(Math.floor(Math.random() * (end - start + 1)) + start);
+		}
+
+		const emojiContainer = document.getElementById('emoji-container');
+		emojiContainer.textContent = getRandomEmoji();
+		
+		twemoji.parse(emojiContainer);
+
+		const interval = setInterval(() => {
+			emojiContainer.textContent = getRandomEmoji();
+			
+			twemoji.parse(emojiContainer);
+		}, 2000);
+		fetchProjects();
+	</script>
+</body>
+</html>
