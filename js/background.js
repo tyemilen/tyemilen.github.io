@@ -10,8 +10,8 @@ const numStars = 100;
 const speed = 0.4;
 
 const makeStar = () => ({
-	x: Math.random() * 2,
-	y: Math.random() * 2,
+	x: Math.random() * 4,
+	y: Math.random(),
 	distance: Math.sqrt(Math.random()),
 	color: `hsl(${Math.random() * 20}, 0%, ${(Math.random() * 100)}%, 40%)`
 });
