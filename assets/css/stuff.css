@@ -16,7 +16,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	align-content: center;
-    background-image: url('./assets/bg.gif');
+    background-image: url('../bg.gif');
 }
 
 header {
@@ -51,11 +51,24 @@ main {
     animation: rotateX 2s linear infinite;
 }
 
-.cats {
+.links {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+	flex-direction: column;
+	align-items: start;
+	justify-content: start;
+}
+
+.link {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+a {
+	color: white;
+	text-decoration: underline;
 }
 
 h1 {
