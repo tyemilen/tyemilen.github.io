@@ -77,4 +77,3 @@ function renderImage(canvas, texturePath, rotationSpeed, aColor = '0,0,0') {
 
 renderImage(document.getElementById('github'), './assets/github.png', random(MIN_ROTATION_SPEED, MAX_ROTATION_SPEED));
 renderImage(document.getElementById('twt'), './assets/twt.png', -random(MIN_ROTATION_SPEED, MAX_ROTATION_SPEED));
-renderImage(document.getElementById('api'), './assets/google.jpg', random(MIN_ROTATION_SPEED, MAX_ROTATION_SPEED));
