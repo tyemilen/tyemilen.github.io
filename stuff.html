@@ -9,17 +9,161 @@
 
 	<link rel="stylesheet" href="./assets/css/stuff.css">
 </head>
-
 <body>
 	<main>
-		<div class="links">
-			<div class="link">
-				<canvas id="github" width="100"></canvas>
-				<a target="_blank" href="https://github.com/tyemilen">Github</a>
+		<div class="window" id="bio">
+			<div class="window__titlebar">
+				<div class="titlebar__container">
+					<div class="titlebar__title">
+						<img src="./assets/icons/chm-0.png" />
+						<p>what</p>
+					</div>
+					<div class="titlebar__buttons">
+						<div>
+							<div class="button">
+								<img src="./assets/icons/minimize.svg" />
+							</div>
+							<div class="button">
+								<img src="./assets/icons/maximize.svg" />
+							</div>
+						</div>
+						<div class="button">
+							<img src="./assets/icons/close.svg" />
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="link">
-				<canvas id="twt" width="100"></canvas>
-				<a target="_blank" href="https://twitter.com/tyemilen">Xitter</a>
+
+			<div class="window__content" id="bio">
+				<h1>my cool webpage</h1>
+				<div class="links">
+					<div class="link">
+						<canvas id="github" width="26" height="26"></canvas>
+						<a target="_blank" href="https://github.com/tyemilen">Github</a>
+					</div>
+					<div class="link">
+						<canvas id="twt" width="26" height="26"></canvas>
+						<a target="_blank" href="https://twitter.com/3735929054lover">Xitter</a>
+					</div>
+				</div>
+				<div id="current-track">
+					<img id="track-cover" src="" />
+					<p id="track"></p>
+				</div>
+			</div>
+		</div>
+		<div class="windows">
+			<div class="window" id="badges">
+				<div class="window__titlebar">
+					<div class="titlebar__container">
+						<div class="titlebar__title">
+							<img src="./assets/icons/address_book-1.png" />
+							<p>Address book</p>
+						</div>
+
+						<div class="titlebar__buttons">
+							<div>
+								<div class="button">
+									<img src="./assets/icons/minimize.svg" />
+								</div>
+								<div class="button">
+									<img src="./assets/icons/maximize.svg" />
+								</div>
+							</div>
+							<div class="button">
+								<img src="./assets/icons/close.svg" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="window__content">
+					<img id="badge" style="image-rendering:pixelated" src="./assets/88x31.png">
+					<a href="https://otomir23.me/" target="_blank" style="image-rendering:pixelated">
+						<img src="https://otomir23.me/88x31.png" alt="otomir23's 88x31 button">
+					</a>
+					<a href="https://jesx.dev" _target="_blank">
+						<img style="image-rendering:pixelated" src="https://jesx.dev/images/buttons/footer/jesx.gif">
+					</a>
+				</div>
+			</div>
+			<div class="window" id="counter">
+				<div class="window__titlebar">
+					<div class="titlebar__container">
+						<div class="titlebar__title">
+							<img src="./assets/icons/users_green-5.png" />
+							<p>Counter</p>
+						</div>
+
+						<div class="titlebar__buttons">
+							<div>
+								<div class="button">
+									<img src="./assets/icons/minimize.svg" />
+								</div>
+								<div class="button">
+									<img src="./assets/icons/maximize.svg" />
+								</div>
+							</div>
+							<div class="button">
+								<img src="./assets/icons/close.svg" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="window__content">
+					<img width="400vw" src="https://count.getloli.com/@tml?name=tml&theme=capoo-1&padding=7&offset=0&align=top&scale=1&pixelated=1&darkmode=auto">				
+				</div>
+			</div>
+			<div class="window" id="random-ad-1">
+				<div class="window__titlebar">
+					<div class="titlebar__container">
+						<div class="titlebar__title">
+							<img src="./assets/icons/msie2-3.png" />
+							<p>#ad</p>
+						</div>
+						<div class="titlebar__buttons">
+							<div>
+								<div class="button">
+									<img src="./assets/icons/minimize.svg" />
+								</div>
+								<div class="button">
+									<img src="./assets/icons/maximize.svg" />
+								</div>
+							</div>
+							<div class="button">
+								<img src="./assets/icons/close.svg" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="window__content">
+					<iframe width="180" height="180" src="https://dimden.neocities.org/navlink/" name="neolink"></iframe>
+				</div>
+			</div>
+			<div class="window" id="random-ad-2">
+				<div class="window__titlebar">
+					<div class="titlebar__container">
+						<div class="titlebar__title">
+							<img src="./assets/icons/msie2-3.png" />
+							<p>#ad</p>
+						</div>
+						<div class="titlebar__buttons">
+							<div>
+								<div class="button">
+									<img src="./assets/icons/minimize.svg" />
+								</div>
+								<div class="button">
+									<img src="./assets/icons/maximize.svg" />
+								</div>
+							</div>
+							<div class="button">
+								<img src="./assets/icons/close.svg" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="window__content">
+					<iframe width="468" height="60" src="https://hbaguette.neocities.org/bannerlink/embed.html" name="bannerlink"></iframe>
+				</div>
 			</div>
 		</div>
 	</main>
