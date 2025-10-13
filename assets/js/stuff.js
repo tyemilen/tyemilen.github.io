@@ -1,3 +1,9 @@
+console.print = function (...args) {
+	queueMicrotask(console.log.bind(console, ...args));
+}
+console.clear = () => console.print('\n'.repeat(100));
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const random = (min, max) => Math.random() * (max - min) + min;
 
 const MIN_ROTATION_SPEED = 0.5;
@@ -8,6 +14,21 @@ const onBeforeCompile = (shader, color) => {
 		"#include <alphatest_fragment>",
 		`if ( diffuseColor.a < 0.9 ) diffuseColor = vec4(vec3(${color}), 1.0);`)
 };
+
+const FRAME_TIME = 100;
+;(async() => {
+	console.clear();
+	let frames = await fetch('assets/cats.txt').then(async (r) => await r.text());
+	frames = frames.split('#EOF');
+
+	let currentFrame = 0
+	while (true) {
+		console.print(`%c ${'\n'.repeat(100)}\n${frames[currentFrame]}`, 'font-size: 16px; color: pink;');
+		await sleep(FRAME_TIME);
+		console.clear();
+		currentFrame = currentFrame >= frames.length - 1 ? 0 : currentFrame + 1;
+	}
+})();
 
 function renderImage(canvas, texturePath, rotationSpeed, aColor = '0,0,0') {
 	const scene = new THREE.Scene();
@@ -116,13 +137,10 @@ for (const titlebar of titlebars) {
 	document.addEventListener('touchend', (ev) => stopDragging());
 }
 
-;(async() => {
+document.addEventListener('DOMContentLoaded', async () => {
 	const { track } = await fetch('https://lastfm-last-played.biancarosa.com.br/tyemil/latest-song').then(r => r.json());
-
-	console.log(track);
-	console.log(track['@attr']);
 	if (track['@attr']?.nowplaying == 'true') {
 		document.getElementById('track-cover').src = track.image[1]['#text'];
 		document.getElementById('track').innerText = `${track.artist['#text']} - ${track.name}`;
 	}
-})();
+});
