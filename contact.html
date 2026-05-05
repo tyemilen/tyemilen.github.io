@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>rawrarwraw</title>
+		<link rel="stylesheet" href="./assets/css/reset.css" />
+	</head>
+	<body>
+		<div id="main-container">
+			<div id="main">
+				<div class="section">
+					<a href="/">Home</a>
+					<a href="mailto:dokinarieki@disroot.org">
+						<span>Email: dokinarieki@disroot.org</span>
+					</a>
+					<a href="https://t.me/religiousfigure">Telegram: @religiousfigure</a>
+					<a>Discord: kryobrh</a>
+				</div>
+			</div>
+		</div>
+		<style>
+			h2 {
+				margin-block-start: 0;
+				margin-block-end: 0;
+			}
+
+			body {
+				width: 100vw;
+				height: 100vh;
+				overflow: hidden;
+				image-rendering: pixelated;
+				color: #004e78;
+			}
+
+			a {
+				font-size: 22px;
+				font-weight: 500;
+			}
+
+			#main-container {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				max-width: 100%;
+				max-height: 100%;
+				background-color: #eef9ff;
+				gap: 1em;
+			}
+
+			#sign {
+				position: absolute;
+				bottom: -1px;
+				left: -15%;
+				height: 75%;
+				z-index: 999;
+			}
+
+			#main-container #main {
+				width: 100%;
+				height: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.section {
+				padding: 1em;
+				border: 2px solid #004e78;
+				display: flex;
+				flex-direction: column;
+				gap: 1em;
+				width: 50%;
+				height: 50%;
+				overflow-y: scroll;
+				padding-bottom: 1em;
+				flex-shrink: 0;
+			}
+		</style>
+	</body>
+</html>

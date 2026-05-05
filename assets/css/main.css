@@ -1,244 +1,224 @@
-@font-face {
-	font-family: "Pixelated MS Sans Serif";
-	font-style: normal;
-	font-weight: 400;
-	src: url(../fonts/ms_sans_serif.woff) format("woff");
-}
-
-* {
-	font-family: "Pixelated MS Sans Serif", monospace, sans-serif;
-}
-
-html, body {
-	position: relative;
-	min-height: 100vh;
-	width: 100%;
-	overflow-x: hidden;
+:root {
+	--primary: #004e78;
+	--bg: #eef9ff;
+	--text-light: #eef9ff;
 }
 
 body {
-	min-height: 100vh;
-	height: auto;
-	background-image: url('../bg.gif');
-	background-size: 200% 200%;
-	background-repeat: no-repeat;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	image-rendering: pixelated;
+	color: var(--primary);
 }
 
-@keyframes rotateX {
-	0% {
-		transform: rotateY(0deg);
-	}
-
-	100% {
-		transform: rotateY(360deg);
-	}
+h2 {
+	margin: 0;
 }
 
-.rotateme {
-	animation: rotateX 2s linear infinite;
+#main-container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: var(--bg);
 }
 
-.links {
+#main {
 	display: flex;
-	flex-wrap: wrap;
+	height: 100%;
+	padding: 5em;
+	gap: 1em;
+}
+
+.column {
+	position: relative;
+	flex: 1;
+	display: flex;
 	flex-direction: column;
-	align-items: start;
-	justify-content: start;
+	gap: 1em;
 }
 
-.link {
+.row {
+	position: relative;
 	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	font-size: 16px;
+	gap: 1em;
+	height: 40%;
 }
 
-a {
-	color: blue;
-	text-decoration: underline;
+.section {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	border: 2px solid var(--primary);
+	padding-bottom: 1em;
 }
 
-.window {
-	position: absolute;
-	background-color: #c0c0c0;
-	border: solid 1px;
-	border-color: white #0a0a0a #0a0a0a white;
-	box-shadow: rgba(0, 0, 0, 0.5) 30px 20px 1px;
+.header {
+	padding: 1em;
+	background: var(--primary);
+	color: var(--text-light);
+	height: 4em;
+}
+
+.section-main,
+.section-widgets {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	padding: 1em;
+}
+
+.thing {
+	display: flex;
+	gap: 1em;
+	padding: 1em;
+	border-radius: 0.5em;
+	background: var(--primary);
+	color: var(--text-light);
+}
+
+.thing-logo img {
+	width: 56px;
+	height: 56px;
+}
+
+.thing-description p {
+	margin: 0;
+}
+
+.thing-description p:first-child {
+	font-weight: 600;
+}
+
+.widget {
+	display: flex;
+	gap: 1em;
+	padding: 1em;
+	background: var(--primary);
+	color: var(--text-light);
+	border-radius: 0.25em;
+	font-weight: 900;
 	width: fit-content;
 }
 
-.window__content {
-	padding: .5em;
+#counter {
+	width: 100%;
 }
 
-.window__titlebar {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+.section-fella {
 	position: relative;
 	overflow: hidden;
-	width: 100%;
-	height: 24px;
-	font-weight: bold;
-	color: white;
-	z-index: 0;
-	user-select: none;
-	cursor: grab;
+	border: 2px solid var(--primary);
+	display: flex;
+	align-items: flex-end;
 }
 
-.window__titlebar:active {
-	cursor: grabbing;
+.section-fella img {
+	margin-bottom: -1px;
 }
 
-.window__titlebar::before {
-	content: "";
+#flower-1,
+#flower-2 {
 	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-image: url(../rainbow.gif);
-	background-size: cover;
-	filter: blur(8px);
-	transform: scale(1.1);
-	z-index: -1;
+	width: 15%;
+	height: 15%;
 }
 
-.titlebar__container {
-	display: flex;
-	align-items: center;
-	justify-items: center;
-	justify-content: space-between;
-	gap: 5em;
-	padding-left: 5px;
-	padding-right: 5px;
-	width: 100%;
+#flower-1 {
+	bottom: -10%;
+	left: -7%;
+	animation: flower1 2s ease-in-out infinite alternate;
 }
 
-.titlebar__container {
-	text-shadow: #0a0a0a6b 0 0 5px;
+#flower-2 {
+	bottom: -6%;
+	right: -6%;
+	animation: flower2 1.5s ease-in-out infinite alternate;
 }
 
-.titlebar__container div {
-	display: flex;
+@keyframes flower1 {
+	from {
+		rotate: 0deg;
+	}
+
+	to {
+		rotate: 10deg;
+	}
 }
 
-.titlebar__buttons {
-	display: flex;
-	gap: 2px;
+@keyframes flower2 {
+	from {
+		rotate: 0deg;
+	}
+
+	to {
+		rotate: -10deg;
+	}
 }
 
-.titlebar__title {
-	display: flex;
-	gap: 4px;
+.sky {
+	background: url(../sky.jpg);
+	animation: sky 20s ease-in-out infinite alternate;
+	filter: contrast(100%) brightness(120%);
+	background-size: 110% 110%;
 }
 
-.titlebar__title img {
-	object-fit: contain;
+#sign {
+	position: absolute;
+	bottom: -1px;
+	left: -15%;
+	height: 75%;
+	z-index: 999;
 }
 
-.button {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: #c0c0c0;
-	box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
-	min-width: 20px;
-	text-align: center;
-	height: 18px;
+[id^='ROUTE_'][id$='_RECT'] {
 	cursor: pointer;
 }
 
-.button:active {
-	box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px grey;
+@keyframes sky {
+	from {
+		background-position: 28% 28%;
+	}
+
+	to {
+		background-position: 52% 52%;
+	}
 }
 
-.windows {
-	width: 100%;
-	height: 100%;
-}
-
-.window#bio {
-	left: 40%;
-	top: 10%;
-}
-
-.window#badges {
-	position: absolute;
-	top: 80%;
-	left: 1%
-}
-
-.window#badges .window__content {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-column-gap: .5em;
-	grid-row-gap: .5em;
-	width: fit-content;
-}
-
-.window#counter {
-	position: absolute;
-	right: 100px;
-	width: fit-content;
-	top: 60%;
-}
-
-.window#random-ad-1 {
-	width: fit-content;
-	position: absolute;
-	top: 35%;
-	left: 5%;
-}
-
-.window#random-ad-2 {
-	width: fit-content;
-	position: absolute;
-	top: 85%;
-	left: 30%;
-}
-
-h1 {
-	font-size: 36PX;
-	font-style: italic;
-	text-align: center;
-	margin: 0;
-	padding: 10px;
-	background-image: url(../starfield.gif);
-	background-size: 100% 100%;
-	background-clip: text;
-	-webkit-text-fill-color: transparent;
-	animation: move 10s infinite linear;
-}
-
-.window__content#bio {
-	display: flex;
-	flex-direction: column;
-	gap: 1em;
-}
-
-#current-track {
-	border-top: 1px solid #838383;
-	padding-top: .5em;
-	display: flex;
-	gap: 1em;
-	justify-content: space-between;
-	align-items: center;
-	flex-direction: row;
-	font-weight: bolder;
-}
-
-@keyframes move {
+@keyframes fall {
 	0% {
-		background-position: 0%;
+		top: -10%;
+		transform: translateX(0) rotate(0);
 	}
 
 	50% {
-		background-position: 100%;
+		transform: translateX(100px) rotate(180deg);
 	}
 
 	100% {
-		background-position: 0%;
+		top: 110%;
+		transform: translateX(-50px) rotate(360deg);
+	}
+}
+
+@media (max-width: 768px) {
+	#main {
+		flex-direction: column;
+		padding: 2em;
+		overflow-y: auto;
+	}
+
+	.row {
+		flex-direction: column;
+	}
+
+	#sign {
+		height: 50vh;
+		left: 50%;
+		transform: translate(-50%, 0%);
+	}
+
+	[id^='flower-'] {
+		width: 20%;
 	}
 }

@@ -1,248 +1,98 @@
-console.print = function (...args) {
-	queueMicrotask(console.log.bind(console, ...args));
+const thingsData = [
+	{ img: 'gleb.svg', title: 'Thing', desc: 'nothingburger' },
+	{ img: 'ika.svg', title: 'Thing', desc: 'awesome sauce' },
+	{ img: 'bieberite.png', title: 'Thing', desc: 'nothingburger' },
+];
+
+function renderThings() {
+	const container = document.getElementById('things');
+	if (!container) return;
+
+	container.innerHTML = thingsData
+		.map((t) => {
+			return `
+							<div class="thing">
+							<div class="thing-logo">
+								<img src="assets/things/${t.img}" />
+							</div>
+							<div class="thing-description">
+								<p>${t.title}</p>
+								<p>${t.desc}</p>
+							</div>
+						</div>
+      					`;
+		})
+		.join('');
 }
-console.clear = () => console.print('\n'.repeat(100));
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-const random = (min, max) => Math.random() * (max - min) + min;
+function createPetal(container) {
+	const petal = document.createElement('div');
+	const size = Math.random() * 15;
 
-const MIN_ROTATION_SPEED = 0.5;
-const MAX_ROTATION_SPEED = 0.8;
-
-const onBeforeCompile = (shader, color) => {
-	shader.fragmentShader = shader.fragmentShader.replace(
-		"#include <alphatest_fragment>",
-		`if ( diffuseColor.a < 0.9 ) diffuseColor = vec4(vec3(${color}), 1.0);`)
-};
-
-const FRAME_TIME = 100;
-; (async () => {
-	console.clear();
-	let frames = await fetch('assets/cats.txt').then(async (r) => await r.text());
-	frames = frames.split('#EOF');
-
-	let currentFrame = 0
-	while (true) {
-		console.print(`%c ${'\n'.repeat(100)}\n${frames[currentFrame]}`, 'font-size: 16px; color: pink;');
-		await sleep(FRAME_TIME);
-		console.clear();
-		currentFrame = currentFrame >= frames.length - 1 ? 0 : currentFrame + 1;
-	}
-})();
-
-function renderImage(canvas, texturePath, rotationSpeed, aColor = '0,0,0') {
-	const scene = new THREE.Scene();
-	const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000);
-	const renderer = new THREE.WebGLRenderer({
-		canvas,
-		alpha: true,
-		antialias: true
+	Object.assign(petal.style, {
+		position: 'absolute',
+		top: '-50px',
+		left: `${Math.random() * 100}vw`,
+		width: `${size}px`,
+		height: `${size * 1.2}px`,
+		backgroundColor: '#004e78',
+		borderRadius: '50% 0 50% 50%',
+		opacity: Math.random() * 0.4 + 0.6,
+		animation: `fall ${Math.random() * 5 + 5}s linear ${Math.random() * 5}s infinite`,
 	});
-	renderer.setSize(canvas.width, canvas.height, true);
-	renderer.outputEncoding = THREE.sRGBEncoding;
 
-	camera.position.set(0, 0, 6);
-
-	const texture = new THREE.TextureLoader().load(texturePath);
-	const backTexture = new THREE.TextureLoader().load(texturePath);
-	backTexture.flipY = false;
-
-	const geometry = new THREE.CylinderGeometry(3, 3, 0.2, 100);
-
-	const cylinder = new THREE.Mesh(geometry, [
-		new THREE.MeshStandardMaterial(),
-		new THREE.MeshStandardMaterial({ map: texture, alphaTest: 0.5, onBeforeCompile: shader => onBeforeCompile(shader, aColor) }),
-		new THREE.MeshStandardMaterial({ map: backTexture, alphaTest: 0.5, onBeforeCompile: shader => onBeforeCompile(shader, aColor) }),
-	]);
-	cylinder.castShadow = true;
-	scene.add(cylinder);
-
-	const light = new THREE.DirectionalLight(0xffffff);
-	light.position.set(0, 2, 2);
-	light.target.position.set(0, 0, 0);
-	light.castShadow = true;
-	scene.add(light);
-
-	cylinder.rotation.x = Math.PI / 2;
-	cylinder.rotation.y = Math.PI / 2;
-
-	let breathState = true;
-	function animate() {
-		requestAnimationFrame(animate);
-
-		cylinder.rotateX(THREE.Math.degToRad(rotationSpeed));
-
-		if (cylinder.scale.y < 1.3 && !breathState) {
-			cylinder.scale.y += .001;
-			if (cylinder.scale.y >= 1.3) breathState = true;
-
-		} else {
-			cylinder.scale.y -= .001;
-
-			if (cylinder.scale.y <= 1) breathState = false;
-		}
-
-		renderer.render(scene, camera);
-	}
-	renderer.render(scene, camera);
-
-	animate();
-
-	window.addEventListener('resize', () => {
-		camera.updateProjectionMatrix();
-		renderer.setSize(canvas.width, canvas.height);
-	});
+	container.appendChild(petal);
 }
 
-renderImage(document.getElementById('github'), './assets/github.png', random(MIN_ROTATION_SPEED, MAX_ROTATION_SPEED));
-renderImage(document.getElementById('twt'), './assets/twt.png', -random(MIN_ROTATION_SPEED, MAX_ROTATION_SPEED));
+function initPetals() {
+	const container = document.getElementById('fella');
+	if (!container) return;
 
-const titlebars = document.getElementsByClassName('window__titlebar');
-
-let zIndexCounter = 0;
-
-for (const titlebar of titlebars) {
-	const window = titlebar.parentElement;
-	let rect = window.getBoundingClientRect();
-
-	const beginDragging = (ev) => {
-		rect = window.getBoundingClientRect();
-		titlebar.dragging = true;
-		window.offsetX = ev.clientX || ev.touches[0].clientX;
-		window.offsetY = ev.clientY || ev.touches[0].clientY;
-
-		zIndexCounter += 1;
-		window.style.zIndex = zIndexCounter
+	for (let i = 0; i < 50; i++) {
+		createPetal(container);
 	}
-
-	const handleDragging = (ev) => {
-		if (!titlebar.dragging) return;
-		let x = ((ev.clientX || ev.touches[0].clientX) - window.offsetX) + rect.x;
-		let y = ((ev.clientY || ev.touches[0].clientY) - window.offsetY) + rect.y;
-
-		window.style.left = `${x}px`;
-		window.style.top = `${y}px`;
-	}
-
-	const stopDragging = () => {
-		titlebar.dragging = false;
-	}
-
-	titlebar.addEventListener('mousedown', (ev) => beginDragging(ev));
-	document.addEventListener('mousemove', (ev) => handleDragging(ev));
-	document.addEventListener('mouseup', () => stopDragging());
-
-	titlebar.addEventListener('touchstart', (ev) => beginDragging(ev));
-	document.addEventListener('touchmove', (ev) => handleDragging(ev));
-	document.addEventListener('touchend', (ev) => stopDragging());
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-	const { track } = await fetch('https://lastfm-last-played.biancarosa.com.br/tyemil/latest-song').then(r => r.json());
-	if (track['@attr']?.nowplaying == 'true') {
-		document.getElementById('track-cover').src = track.image[1]['#text'];
-		document.getElementById('track').innerText = `${track.artist['#text']} - ${track.name}`;
-	}
-});
+async function loadTrack() {
+	const res = await fetch('https://lastfm-last-played.biancarosa.com.br/tyemil/latest-song');
+	const { track } = await res.json();
 
-let changeTitle = true;
-let currentTitleIndex = 1;
+	const cover = document.getElementById('track-cover');
+	const text = document.getElementById('track');
+
+	if (cover) cover.src = track.image[1]['#text'];
+	if (text) text.textContent = `${track.artist['#text']} - ${track.name}`;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-	const originalTitle = document.title;
-	const letters = originalTitle.split('');
-
-
-	document.title = letters[0];
-	function updateTitle() {
-		if (!changeTitle) {
-			return;
-		}
-
-		document.title += letters[currentTitleIndex] == ' ' ? letters[currentTitleIndex] + ' ' : letters[currentTitleIndex];
-
-		if (currentTitleIndex >= letters.length) {
-			currentTitleIndex = 1;
-			document.title = letters[0];
-		} else {
-			++currentTitleIndex;
-		}
-	}
-
-	intervalId = setInterval(updateTitle, 300);
+	renderThings();
+	initPetals();
+	loadTrack();
 });
 
-const services = [
-	() => {
-		let title = 'Reddit - Dive into anything';
-		let favicon = '/favicons/reddit.png';
-		return {
-			title, favicon
-		}
-	},
-	() => {
-		let title = 'X. It\'s what\'s happening / X';
-		let favicon = '/favicons/twitter.ico';
-		return {
-			title, favicon
-		}
-	},
-	() => {
-		let title = 'Discover - Bluesky';
-		let favicon = '/favicons/bluesky.png';
-		return {
-			title, favicon
-		}
-	},
-	() => {
-		let title = 'Wikipedia';
-		let favicon = '/favicons/wikipedia.ico';
-		return {
-			title, favicon
-		}
-	},
-	() => {
-		let title = 'Her (2013) - IMDb';
-		let favicon = '/favicons/imdb.jpg';
-		return {
-			title, favicon
-		}
-	},
-	() => {
-		let title = 'Explore - Find your favourite videos on TikTok';
-		let favicon = '/favicons/tiktok.ico';
-		return {
-			title, favicon
-		}
-	},
-	() => {
-		let count = Math.round(Math.random() * 99) + 1;
-		let title = `(${count}) Facebook`;
-		let favicon = `/favicons/facebook.png`;
-		return {
-			title, favicon
-		}
-	},
-	() => {
-		let count = Math.round(Math.random() * 10) + 1;
-		let title = `(${count}) Instagram`;
-		let favicon = `/favicons/instagram.png`;
-		return {
-			title, favicon
-		}
-	}
+const sign = document.getElementById('sign');
+const routes = [
+	{ name: 'INDEX', path: '/' },
+	{ name: 'CONTACT', path: '/contact' },
+	{ name: 'MUSIC', path: 'https://soundcloud.com/nomental' },
 ];
-document.addEventListener('visibilitychange', function () {
-	if (document.hidden) {
-		changeTitle = false;
-		const service = services[Math.floor(Math.random() * services.length)]();
-		document.title = service.title;
-		document.querySelector('link[rel*=\'icon\']').href = `./assets/${service.favicon}`;
-	}
-	if (!document.hidden && !changeTitle) {
-		document.querySelector('link[rel*=\'icon\']').href = './assets/icon.jpg';
-		document.title = '';
-		currentTitleIndex = 0;
-		changeTitle = true;
+routes.forEach((route) => {
+	const oldtarget = sign.querySelector(`#ROUTE_${route.name}_1`);
+	const target = sign.querySelector(`#ROUTE_${route.name}_2`);
+	const trigger = sign.querySelector(`#ROUTE_${route.name}_RECT`);
+	if (target && trigger) {
+		target.style.display = 'none';
+		trigger.addEventListener('click', async (event) => {
+			event.stopPropagation();
+			window.location.href = route.path;
+		});
+		trigger.addEventListener('mouseenter', () => {
+			oldtarget.style.display = 'none';
+			target.style.display = 'block';
+		});
+		trigger.addEventListener('mouseleave', () => {
+			target.style.display = 'none';
+			oldtarget.style.display = 'block';
+		});
 	}
 });
