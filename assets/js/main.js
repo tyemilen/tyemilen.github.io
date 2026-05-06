@@ -11,15 +11,15 @@ function renderThings() {
 	container.innerHTML = thingsData
 		.map((t) => {
 			return `
-							<div class="thing">
-							<div class="thing-logo">
-								<img src="assets/things/${t.img}" />
-							</div>
-							<div class="thing-description">
-								<p>${t.title}</p>
-								<p>${t.desc}</p>
-							</div>
+					<div class="thing">
+						<div class="thing-logo">
+							<img src="assets/things/${t.img}" />
 						</div>
+						<div class="thing-description">
+							<p>${t.title}</p>
+							<p>${t.desc}</p>
+						</div>
+					</div>
       					`;
 		})
 		.join('');
@@ -28,16 +28,16 @@ function renderThings() {
 function createPetal(container) {
 	const petal = document.createElement('div');
 	const size = Math.random() * 15;
-
 	Object.assign(petal.style, {
 		position: 'absolute',
-		top: '-50px',
+		top: '-40px',
 		left: `${Math.random() * 100}vw`,
 		width: `${size}px`,
 		height: `${size * 1.2}px`,
 		backgroundColor: '#004e78',
 		borderRadius: '50% 0 50% 50%',
 		opacity: Math.random() * 0.4 + 0.6,
+		willChange: 'transform',
 		animation: `fall ${Math.random() * 5 + 5}s ease-in-out ${Math.random() * 5}s infinite`,
 	});
 
@@ -116,6 +116,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	document.getElementById('age').innerHTML = katex.renderToString(
 		genLatex(new Date().getFullYear() - 2004),
 	);
+
+	document.getElementById('mybtn').onclick = async () => {
+		await navigator.clipboard.writeText(`
+			<a href="https://rawr.rs/" target="_blank" style="image-rendering:pixelated">
+				<img src="https://rawr.rs/assets/88x31.png" alt="doeki's 88x31 button">
+			</a>	
+		`);
+	};
 });
 
 const sign = document.getElementById('sign');

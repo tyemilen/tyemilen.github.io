@@ -7,9 +7,10 @@
 body {
 	width: 100vw;
 	height: 100vh;
-	overflow: hidden;
 	image-rendering: pixelated;
+	overflow-x: hidden;
 	color: var(--primary);
+	background: var(--bg);
 }
 
 h2 {
@@ -20,7 +21,6 @@ h2 {
 	position: relative;
 	width: 100%;
 	height: 100%;
-	background: var(--bg);
 }
 
 #main {
@@ -32,7 +32,6 @@ h2 {
 
 .column {
 	position: relative;
-	flex: 1;
 	display: flex;
 	flex-direction: column;
 	gap: 1em;
@@ -42,16 +41,30 @@ h2 {
 	position: relative;
 	display: flex;
 	gap: 1em;
-	height: 40%;
 }
 
 .section {
-	flex: 1;
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	border: 2px solid var(--primary);
 	padding-bottom: 1em;
 	word-break: break-all;
+	flex-grow: 1;
+}
+
+.section-buttons {
+	flex: 0;
+	height: fit-content;
+	flex-direction: row;
+	flex-wrap: wrap;
+	padding: 1em;
+	gap: 0.5em;
+	align-items: center;
+}
+
+.section-buttons img {
+	image-rendering: pixelated;
 }
 
 .section-overflow {
@@ -63,6 +76,7 @@ h2 {
 	bottom: 1em;
 	right: 1em;
 	opacity: 0.5;
+	z-index: -1;
 }
 
 #corner-flowers-2 {
@@ -70,6 +84,7 @@ h2 {
 	top: 0.5em;
 	right: 0.5em;
 	opacity: 0.5;
+	z-index: -1;
 }
 
 .badges {
@@ -99,9 +114,15 @@ h2 {
 	display: flex;
 	gap: 1em;
 	padding: 1em;
+	border: 1px dashed var(--primary);
+}
+
+.thing-logo {
+	background-color: var(--primary);
 	border-radius: 0.5em;
-	background: var(--primary);
-	color: var(--text-light);
+	padding: 0.5em;
+	display: flex;
+	justify-content: center;
 }
 
 .thing-logo img {
@@ -121,11 +142,14 @@ h2 {
 	display: flex;
 	gap: 1em;
 	padding: 1em;
-	background: var(--primary);
-	color: var(--text-light);
-	border-radius: 0.25em;
+	border: 1px dashed var(--primary);
 	font-weight: 900;
 	width: fit-content;
+}
+
+.widget.buttons {
+	align-self: flex-end;
+	height: fit-content;
 }
 
 #counter {
@@ -149,6 +173,7 @@ h2 {
 	position: absolute;
 	width: 15%;
 	height: 15%;
+	z-index: 10;
 }
 
 #flower-1 {
@@ -158,8 +183,8 @@ h2 {
 }
 
 #flower-2 {
-	bottom: -6%;
-	right: -6%;
+	bottom: 0;
+	right: -6.7%;
 	animation: flower2 1.5s ease-in-out infinite alternate;
 }
 
@@ -183,7 +208,13 @@ h2 {
 	}
 }
 
+.flex-1 {
+	flex: 1;
+	flex-shrink: 0;
+}
+
 .sky {
+	height: 100%;
 	background: url(../sky.jpg);
 	animation: sky 20s ease-in-out infinite alternate;
 	filter: contrast(100%) brightness(120%);
@@ -196,6 +227,10 @@ h2 {
 	left: -15%;
 	height: 75%;
 	z-index: 999;
+}
+
+#mybtn {
+	cursor: pointer;
 }
 
 [id^='ROUTE_'][id$='_RECT'] {
@@ -214,17 +249,31 @@ h2 {
 
 @keyframes fall {
 	0% {
-		top: -10%;
-		transform: translateX(0) rotate(0);
+		transform: translateY(0) translateX(0) rotate(0);
 	}
 
 	50% {
-		transform: translateX(100px) rotate(180deg);
+		transform: translateY(60vh) translateX(100px) rotate(180deg);
 	}
 
 	100% {
-		top: 110%;
-		transform: translateX(-50px) rotate(360deg);
+		transform: translateY(120vh) translateX(-50px) rotate(360deg);
+	}
+}
+
+@media (max-width: 1600px) {
+	#main {
+		flex-direction: column;
+	}
+
+	#sign {
+		height: 50vh;
+		left: 50%;
+		transform: translate(-50%, 0%);
+	}
+
+	#corner-flowers-2 {
+		display: none;
 	}
 }
 
@@ -247,5 +296,12 @@ h2 {
 
 	[id^='flower-'] {
 		width: 20%;
+	}
+
+	#corner-flowers {
+		opacity: 0.1;
+	}
+	#corner-flowers-2 {
+		display: none;
 	}
 }
