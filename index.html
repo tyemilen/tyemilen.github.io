@@ -6,7 +6,20 @@
 		<title>beep boop</title>
 		<link rel="stylesheet" href="./assets/css/reset.css" />
 		<link rel="stylesheet" href="./assets/css/main.css" />
-		<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/katex@0.16.45/dist/katex.min.css"
+			integrity="sha384-UA8juhPf75SzzAMA/4fo3yOU7sBJ0om7SCD2GHq0fZqZco6tr1UCV7nUbk9J90JM"
+			crossorigin="anonymous"
+		/>
+		<script
+			defer
+			src="https://cdn.jsdelivr.net/npm/katex@0.16.45/dist/katex.min.js"
+			integrity="sha384-Tt7wBxLKwSzFVRET4O4U9H6v8MNaQ/CjN2FMP4xFm0ErrFu6aNqoonRVW5W40iGI"
+			crossorigin="anonymous"
+		></script>
+
+		<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
 	</head>
 
 	<body>
@@ -16,7 +29,7 @@
 					<div class="row">
 						<img src="assets/flower_1.svg" id="flower-1" />
 
-						<div class="section">
+						<div class="section section-overflow">
 							<div class="header">
 								<h2>
 									dokinarikekinatorsaurusopsenatoraceaeaceousitislysishydrogenatiz
@@ -31,10 +44,42 @@
 						</div>
 					</div>
 
-					<div class="section">
+					<div class="section section-overflow">
+						<img src="assets/flowers.svg" id="corner-flowers" />
 						<div class="section-widgets">
 							<div>
-								<p>94 year old full-stack dev</p>
+								<p><span id="age">-1</span> year old full-stack dev</p>
+								<div class="badges">
+									<img
+										src="https://img.shields.io/badge/vue.js-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D"
+										alt="vue"
+									/>
+									<img
+										src="https://img.shields.io/badge/Nuxt-002E3B.svg?style=for-the-badge&logo=nuxt&logoColor=#00DC82"
+										alt="nuxt"
+									/>
+									<img
+										src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white"
+										alt="TypeScript"
+									/>
+									<img
+										src="https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white"
+										alt="Go"
+									/>
+									<img
+										src="https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white"
+										alt="C"
+									/>
+									<img
+										src="https://img.shields.io/badge/NIXOS-5277C3.svg?style=for-the-badge&logo=NixOS&logoColor=white"
+										alt="nixnixnixnixnixos"
+									/>
+									<img
+										src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white"
+										alt="postgres"
+									/>
+								</div>
+
 								<p>Username pronunciation for dummies:</p>
 								<p style="font-weight: bold">
 									ドキナリケキネイターソールスオップセナトラシーエアシュスアイティスライシスハイドロジェネタイズ
@@ -43,7 +88,6 @@
 									do-ke-na-re-ke-ki-nay-tor-sawr-us-op-seh-nay-tor-ay-see-ay-ay-shus-eye-tis-lye-sis-hye-droj-en-uh-tize
 								</p>
 							</div>
-
 							<div class="widget">
 								<img id="track-cover" />
 								<div id="track"></div>
@@ -193,6 +237,7 @@
 								/>
 							</g>
 						</svg>
+						<img src="assets/flowers_2.svg" id="corner-flowers-2" alt="" />
 					</div>
 					<img src="assets/flower_2.svg" id="flower-2" />
 				</div>

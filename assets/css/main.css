@@ -51,13 +51,40 @@ h2 {
 	flex-direction: column;
 	border: 2px solid var(--primary);
 	padding-bottom: 1em;
+	word-break: break-all;
+}
+
+.section-overflow {
+	overflow-y: scroll;
+}
+
+#corner-flowers {
+	position: absolute;
+	bottom: 1em;
+	right: 1em;
+	opacity: 0.5;
+}
+
+#corner-flowers-2 {
+	position: absolute;
+	top: 0.5em;
+	right: 0.5em;
+	opacity: 0.5;
+}
+
+.badges {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.katex * {
+	font-weight: bolder;
 }
 
 .header {
 	padding: 1em;
 	background: var(--primary);
 	color: var(--text-light);
-	height: 4em;
 }
 
 .section-main,
