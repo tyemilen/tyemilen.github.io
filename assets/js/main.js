@@ -121,8 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		await navigator.clipboard.writeText(`
 <a href="https://rawr.rs/" target="_blank" style="image-rendering:pixelated">
 	<img src="https://rawr.rs/assets/88x31.png" alt="doeki's 88x31 button">
-</a>	
-		`);
+</a>`);
 	};
 });
 
