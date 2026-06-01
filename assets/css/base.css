@@ -1,0 +1,21 @@
+:root {
+	--primary: #000000;
+	--bg: #f7f7f7;
+	--text: #000000;
+}
+
+.cooked,
+.cooked *,
+.cooked *::before,
+.cooked *::after {
+	transition:
+		color 6.7s ease,
+		fill 6.7s,
+		stroke 6.7s,
+		background-color 6.7s ease,
+		border-color 6.7s ease;
+}
+
+#message-of-the-month {
+	font-style: italic;
+}

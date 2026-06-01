@@ -1,10 +1,22 @@
 const thingsData = [
-	{ img: 'gleb.svg', title: 'Thing', desc: 'nothingburger' },
-	{ img: 'ika.svg', title: 'Thing', desc: 'awesome sauce' },
-	{ img: 'bieberite.png', title: 'Thing', desc: 'nothingburger' },
+	{
+		img: 'gleb.svg',
+		title: 'Gleb',
+		desc: 'nothingburger',
+	},
+	{
+		img: 'ika.svg',
+		title: 'Ika',
+		desc: 'awesome sauce',
+	},
+	{
+		img: 'bieberite.png',
+		title: 'Bieberite',
+		desc: 'nothingburger',
+	},
 ];
 
-function renderThings() {
+async function renderThings() {
 	const container = document.getElementById('things');
 	if (!container) return;
 
@@ -34,7 +46,7 @@ function createPetal(container) {
 		left: `${Math.random() * 100}vw`,
 		width: `${size}px`,
 		height: `${size * 1.2}px`,
-		backgroundColor: '#004e78',
+		backgroundColor: 'var(--primary)',
 		borderRadius: '50% 0 50% 50%',
 		opacity: Math.random() * 0.4 + 0.6,
 		willChange: 'transform',
@@ -108,6 +120,34 @@ function genLatex(target) {
 	return randomArchetype();
 }
 
+const badges = [
+	'https://img.shields.io/badge/vue.js-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D',
+	'https://img.shields.io/badge/Nuxt-002E3B.svg?style=for-the-badge&logo=nuxt&logoColor=#00DC82',
+	'https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white',
+	'https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white',
+	'https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white',
+	'https://img.shields.io/badge/NIXOS-5277C3.svg?style=for-the-badge&logo=NixOS&logoColor=white',
+	'https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white',
+	null,
+	'https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white',
+	'https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black',
+	'https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white',
+];
+const badgesContainer = document.getElementById('badges');
+
+badges.forEach((badge) => {
+	if (!badge) {
+		badgesContainer.appendChild(document.createElement('br'));
+		return;
+	}
+	const img = document.createElement('img');
+
+	img.src = badge;
+	img.alt = new URLSearchParams(badge).get('logo') || 'alt';
+
+	badgesContainer.appendChild(img);
+});
+
 document.addEventListener('DOMContentLoaded', () => {
 	renderThings();
 	initPetals();
@@ -136,6 +176,7 @@ routes.forEach((route) => {
 	const oldtarget = sign.querySelector(`#ROUTE_${route.name}_1`);
 	const target = sign.querySelector(`#ROUTE_${route.name}_2`);
 	const trigger = sign.querySelector(`#ROUTE_${route.name}_RECT`);
+
 	if (target && trigger) {
 		target.style.display = 'none';
 		trigger.addEventListener('click', async (event) => {
