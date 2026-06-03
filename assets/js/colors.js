@@ -54,6 +54,8 @@ const colors = [
 		endMonth: 5,
 		endDay: 31,
 		colors: ['#940074'],
+		pattern: 'flower',
+		patternOpacity: 0.3
 	},
 	{
 		message: 'all my homies are deeply in love with eachother',
@@ -74,6 +76,8 @@ const colors = [
 			'#24408E',
 			'#732982',
 		],
+		pattern: 'paw',
+		patternOpacity: 0.05,
 	},
 	{
 		message: 'SUMMER IS THE BEST I LOVE THE WORLD AND EVERYTHING IN IT',
@@ -82,22 +86,29 @@ const colors = [
 		endMonth: 8,
 		endDay: 31,
 		colors: ['#009411'],
+		pattern: 'sun',
+		patternOpacity: 0.5
+
 	},
 	{
-		message: 'meh',
+		message: 'fall is fine',
 		startMonth: 9,
 		startDay: 1,
 		endMonth: 11,
 		endDay: 30,
 		colors: ['#9d1101'],
+		pattern: 'acorn',
+		patternOpacity: 0.3
 	},
 	{
-		message: 'mehhhhhhhhhhhh',
+		message: 'not a fan',
 		startMonth: 12,
 		startDay: 1,
 		endMonth: 2,
 		endDay: 28,
 		colors: ['#004e78'],
+		pattern: 'snowflake',
+		patternOpacity: 0.4
 	},
 ];
 
@@ -121,17 +132,21 @@ const selectedColors = activePeriod?.colors || ['#000000'];
 
 const sleep = (t) => new Promise((resolve) => setTimeout(resolve, t));
 
-(async () => {
+;(async () => {
 	const message = document.getElementById('message-of-the-month');
 	if (message && activePeriod.message) {
 		message.innerText = `[${currentDay.toString().padStart(2, '0')}/${activePeriod.startMonth.toString().padStart(2, '0')}]: ${activePeriod.message}`;
 	}
+
+	document.documentElement.style.setProperty('--pattern-url', `url("/assets/patterns/${activePeriod.pattern}.svg")`);
+	document.documentElement.style.setProperty('--pattern-opacity', activePeriod.patternOpacity);
 
 	let color = selectedColors[0];
 
 	document.documentElement.style.setProperty('--primary', color);
 	document.documentElement.style.setProperty('--bg', fromPrimary(color));
 	document.documentElement.style.setProperty('--text', fromPrimary(color, 0.14));
+	document.documentElement.style.setProperty('--pattern', fromPrimary(color, 0.9));
 
 	setTimeout(() => {
 		document.documentElement.classList.add('cooked');
@@ -144,6 +159,7 @@ const sleep = (t) => new Promise((resolve) => setTimeout(resolve, t));
 			document.documentElement.style.setProperty('--primary', color);
 			document.documentElement.style.setProperty('--bg', fromPrimary(color));
 			document.documentElement.style.setProperty('--text', fromPrimary(color, 0.14));
+			document.documentElement.style.setProperty('--pattern', fromPrimary(color, 0.3));
 
 			await sleep(7000);
 		}

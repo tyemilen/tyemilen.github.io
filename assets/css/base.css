@@ -2,6 +2,9 @@
 	--primary: #000000;
 	--bg: #f7f7f7;
 	--text: #000000;
+	--pattern: #dddddd;
+	--pattern-url: url('/assets/patterns/paw.svg');
+	--pattern-opacity: 0.01;
 }
 
 .cooked,
