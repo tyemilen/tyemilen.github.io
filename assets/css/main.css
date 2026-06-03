@@ -52,7 +52,6 @@ h2 {
 	position: relative;
 	display: flex;
 	gap: 1em;
-	background-color: var(--bg);
 }
 
 .section {
@@ -63,7 +62,7 @@ h2 {
 	padding-bottom: 1em;
 	word-break: break-all;
 	flex-grow: 1;
-	background-color: var(--bg);
+	background-color: var(--bg) !important;
 }
 
 .section-buttons {
@@ -171,6 +170,7 @@ h2 {
 	border: 2px solid var(--primary);
 	display: flex;
 	align-items: flex-end;
+	background-color: var(--bg) !important;
 }
 
 .section-fella img {
@@ -225,19 +225,20 @@ h2 {
 .sky {
 	position: relative;
 	height: 100%;
-	background: url(../sky.jpg) no-repeat no-repeat;
-	background-color: hsl(from var(--bg) h 50% 50%);
+
+	background: url(../sky.jpg) no-repeat no-repeat !important;
+	background-color: hsl(from var(--bg) h 50% 50%) !important;
 	background-blend-mode: screen;
 
+	background-size: cover !important;
 	animation: sky 20s ease-in-out infinite alternate;
-	background-size: 110% 110%;
 
 	isolation: isolate;
 }
 
 #sign {
 	position: absolute;
-	bottom: -1px;
+	bottom: -2px;
 	left: -15%;
 	height: 75%;
 	z-index: 999;
@@ -247,7 +248,8 @@ h2 {
 	cursor: pointer;
 }
 
-[id^='ROUTE_'][id$='_RECT'] {
+[id^='ROUTE_'][id$='_RECT'],
+[id^='WEBRING_'] {
 	cursor: pointer;
 }
 
@@ -281,7 +283,7 @@ h2 {
 	}
 
 	#sign {
-		height: 50vh;
+		height: 80vh;
 		left: 50%;
 		transform: translate(-50%, 0%);
 	}
@@ -303,7 +305,7 @@ h2 {
 	}
 
 	#sign {
-		height: 50vh;
+		height: 80vh;
 		left: 50%;
 		transform: translate(-50%, 0%);
 	}

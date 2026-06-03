@@ -193,3 +193,49 @@ routes.forEach((route) => {
 		});
 	}
 });
+
+const WEBRING_URL = 'https://webring.otomir23.me/';
+const SLUG = 'rawr';
+
+const webring = sign.getElementById('WEBRING_BOX');
+
+const webringLeft = sign.getElementById('WEBRING_LEFT');
+const webringLeftName = sign.getElementById('WEBRING_LEFT_NAME');
+const webringRight = sign.getElementById('WEBRING_RIGHT');
+const webringRightName = sign.getElementById('WEBRING_RIGHT_NAME');
+
+webring.onclick = () => window.open(WEBRING_URL, '_blank');
+
+function insertText(rectElement, textString, parentGroup) {
+	const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+
+	const x = parseFloat(rectElement.getAttribute('x'));
+	const y = parseFloat(rectElement.getAttribute('y'));
+	const w = parseFloat(rectElement.getAttribute('width'));
+	const h = parseFloat(rectElement.getAttribute('height'));
+
+	const centerX = x + w / 2;
+	const centerY = y + h / 2;
+
+	text.setAttribute('x', centerX);
+	text.setAttribute('y', centerY);
+	text.setAttribute('transform', rectElement.getAttribute('transform'));
+	text.setAttribute('text-anchor', 'middle');
+	text.setAttribute('dominant-baseline', 'central');
+	text.setAttribute('fill', 'var(--primary)');
+	text.setAttribute('font-family', "'Kalam', cursive");
+	text.setAttribute('font-size', '16');
+
+	text.textContent = textString;
+	parentGroup.appendChild(text);
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+	const data = await fetch(`https://webring.otomir23.me/${SLUG}/data`).then((r) => r.json());
+
+	insertText(webringLeftName, data.prev.name, webringLeft);
+	insertText(webringRightName, data.next.name, webringRight);
+
+	webringLeft.onclick = () => (window.location.href = data.prev.url);
+	webringRight.onclick = () => (window.location.href = data.next.url);
+});

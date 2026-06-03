@@ -1,4 +1,4 @@
-function fromPrimary(hexColor, l = 0.967) {
+function fromPrimary(hexColor, l = 0.98) {
 	let hex = hexColor.replace('#', '');
 	let r = parseInt(hex.substring(0, 2), 16) / 255;
 	let g = parseInt(hex.substring(2, 4), 16) / 255;
@@ -55,7 +55,7 @@ const colors = [
 		endDay: 31,
 		colors: ['#940074'],
 		pattern: 'flower',
-		patternOpacity: 0.3
+		patternOpacity: 0.3,
 	},
 	{
 		message: 'all my homies are deeply in love with eachother',
@@ -87,8 +87,7 @@ const colors = [
 		endDay: 31,
 		colors: ['#009411'],
 		pattern: 'sun',
-		patternOpacity: 0.5
-
+		patternOpacity: 0.5,
 	},
 	{
 		message: 'fall is fine',
@@ -98,7 +97,7 @@ const colors = [
 		endDay: 30,
 		colors: ['#9d1101'],
 		pattern: 'acorn',
-		patternOpacity: 0.3
+		patternOpacity: 0.3,
 	},
 	{
 		message: 'not a fan',
@@ -108,7 +107,7 @@ const colors = [
 		endDay: 28,
 		colors: ['#004e78'],
 		pattern: 'snowflake',
-		patternOpacity: 0.4
+		patternOpacity: 0.4,
 	},
 ];
 
@@ -132,13 +131,16 @@ const selectedColors = activePeriod?.colors || ['#000000'];
 
 const sleep = (t) => new Promise((resolve) => setTimeout(resolve, t));
 
-;(async () => {
+(async () => {
 	const message = document.getElementById('message-of-the-month');
 	if (message && activePeriod.message) {
 		message.innerText = `[${currentDay.toString().padStart(2, '0')}/${activePeriod.startMonth.toString().padStart(2, '0')}]: ${activePeriod.message}`;
 	}
 
-	document.documentElement.style.setProperty('--pattern-url', `url("/assets/patterns/${activePeriod.pattern}.svg")`);
+	document.documentElement.style.setProperty(
+		'--pattern-url',
+		`url("/assets/patterns/${activePeriod.pattern}.svg")`,
+	);
 	document.documentElement.style.setProperty('--pattern-opacity', activePeriod.patternOpacity);
 
 	let color = selectedColors[0];
