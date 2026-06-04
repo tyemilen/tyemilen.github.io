@@ -22,3 +22,17 @@
 #message-of-the-month {
 	font-style: italic;
 }
+
+.nojs {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: white;
+	width: 100vw;
+	height: 100vh;
+	z-index: 9999;
+	font-size: 64px;
+}
