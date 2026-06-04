@@ -63,6 +63,7 @@ h2 {
 	word-break: break-all;
 	flex-grow: 1;
 	background-color: var(--bg) !important;
+	isolation: isolate;
 }
 
 .section-buttons {
