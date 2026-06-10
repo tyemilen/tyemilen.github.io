@@ -608,19 +608,23 @@
 			}
 
 			g[id="eye"] {
-				animation: eye 5s ease-in-out infinite alternate;
-				transform-origin: center;		
+				transform-origin: center;
+				transition: transform 0.1s ease-out;
 			}
 
-			@keyframes eye {
+			#hand {
+				animation: hand 2.5s infinite alternate;
+			}
+	
+			@keyframes hand {
 				from {
 					rotate: 0deg;
 				}
-
 				to {
-					rotate: 30deg;
+					rotate: 1deg;
 				}
 			}
+
 			@keyframes flower2 {
 				from {
 					rotate: 0deg;

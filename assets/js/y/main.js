@@ -102,6 +102,8 @@ const SLUG = 'rawr';
 const webringLeft = document.getElementById('webring-left');
 const webringRight = document.getElementById('webring-right');
 
+const eye = document.querySelector('g[id="eye"]');
+
 document.addEventListener('DOMContentLoaded', async () => {
 	const data = await fetch(`https://webring.otomir23.me/${SLUG}/data`).then((r) => r.json());
 
@@ -110,4 +112,25 @@ document.addEventListener('DOMContentLoaded', async () => {
 	
 	webringRight.querySelector('p').innerText = data.next.name;
 	webringRight.onclick = () => (window.location.href = data.next.url);
+});
+
+const MAX_DISTANCE = 30; 
+
+window.addEventListener('mousemove', (event) => {
+    const rect = eye.getBoundingClientRect();
+    const eyeX = rect.left + rect.width / 2;
+    const eyeY = rect.top + rect.height / 2;
+
+    const deltaX = event.clientX - eyeX;
+    const deltaY = event.clientY - eyeY;
+
+    const angle = Math.atan2(deltaY, deltaX);
+    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+    const clampedDistance = Math.min(distance, MAX_DISTANCE);
+
+    const moveX = Math.cos(angle) * clampedDistance;
+    const moveY = Math.sin(angle) * clampedDistance;
+
+    eye.style.transform = `translate(${moveX}px, ${moveY}px)`;
 });
