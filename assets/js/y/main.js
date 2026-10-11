@@ -84,7 +84,6 @@ async function loadTrack() {
 	console.log(res)
 	const { track } = await res.json();
 
-	console.log(track)
 	const cover = document.getElementById('track-cover');
 	const text = document.getElementById('track');
 

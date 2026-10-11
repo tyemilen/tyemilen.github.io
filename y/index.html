@@ -28,10 +28,10 @@
 					<div class="month-container">
 						<img id="month-icon"></img>
 					</div>
-					<!-- <div class="section widget">
+					<div class="widget">
 						<img id="track-cover" />
 						<div id="track"></div>
-					</div> -->
+					</div>
 					<div class="section webring">
 						<div id="webring-left">
 							<p></p>
@@ -501,7 +501,12 @@
 			}
 
 			.widget {
-				width: 50%;
+				flex-shrink: 0;
+				display: flex;
+				width: 70%;
+				gap: 0.1em;
+				padding: 0.5em;
+				overflow: hidden;
 				border: 2px solid black;
 			}
 
