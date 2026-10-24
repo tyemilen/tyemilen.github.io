@@ -1,16 +1,10 @@
 {
-	"editor.formatOnSave": true,
-	"editor.defaultFormatter": "oxc.oxc-vscode",
-	"[vue]": {
-		"editor.defaultFormatter": "oxc.oxc-vscode"
-	},
-	"[html]": {
-		"editor.defaultFormatter": "oxc.oxc-vscode"
-	},
-	"[json]": {
-		"editor.defaultFormatter": "vscode.json-language-features"
-	},
-	"[typescript]": {
-		"editor.defaultFormatter": "oxc.oxc-vscode"
-	}
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false,
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.oxlint": "explicit"
+    }
 }
