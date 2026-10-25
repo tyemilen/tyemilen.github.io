@@ -1,9 +1,6 @@
 .site-box {
     position: relative;
     text-align: center;
-    background-image: url(https://rawr.rs/assets/img/sitebox-bg.png);
-    background-repeat: no-repeat;
-    background-size: cover;
     font-size: 12px;
     font-family: monospace;
     border-radius: 4px;
@@ -12,21 +9,13 @@
     transition: all 0.3s ease-in-out;
 }
 
-.site-box:hover {
-    scale: 1.02;
-}
-
-.site-box > a > .sitefeature {
-    opacity: 0;
-}
-
 .site-box > a {
     color: white;
 }
 
 .site-box p {
     position: absolute;
-    top: -80%;
+    top: -81%;
     left: 67%;
     height: 100%;
     display: flex;
