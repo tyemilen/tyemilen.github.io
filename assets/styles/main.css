@@ -122,6 +122,7 @@ body {
 #splash-top {
     position: absolute;
     top: 0;
+    mix-blend-mode: overlay;
 }
 #splash-drops {
     position: absolute;
