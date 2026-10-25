@@ -1,6 +1,9 @@
 .site-box {
     position: relative;
     text-align: center;
+    background-image: url(https://rawr.rs/assets/img/sitebox-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
     font-size: 12px;
     font-family: monospace;
     border-radius: 4px;
