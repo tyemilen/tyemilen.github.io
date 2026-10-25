@@ -13,7 +13,7 @@ jobs:
               uses: actions/checkout@v4
 
             - name: Deploy to Nekoweb
-              uses: indiefellas/deploy2nekoweb@main
+              uses: indiefellas/deploy2nekoweb@v1.0.1
               with:
                   nekoweb-api-key: ${{ secrets.NEKOWEB_API_KEY }}
                   nekoweb-username: 'doeki'
