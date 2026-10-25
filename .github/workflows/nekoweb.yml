@@ -27,5 +27,5 @@ jobs:
                   BUILD_DIR: './build'
                   DEPLOY_DIR: '/doeki.nekoweb.org'
                   CLEANUP: 'False'
-                  DELAY: '0.5'
+                  DELAY: '30'
                   NEKOWEB_PAGENAME: 'doeki'
