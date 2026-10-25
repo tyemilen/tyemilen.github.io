@@ -61,7 +61,7 @@ function curveUsername(el, settings) {
         const letter = document.createElement('span');
         letter.className = 'letter';
         letter.textContent = char;
-
+        letter.style.animationDelay = `${i * 25}ms`;
         letter.style.left = `${x + advances[i] / 2}px`;
         letter.style.top = `${y}px`;
         letter.style.fontSize = `${fontSize}px`;
@@ -74,6 +74,7 @@ function curveUsername(el, settings) {
         el.appendChild(letter);
         x += advances[i];
     });
+    el.classList.add('is-ready');
 }
 
 usernames.forEach((settings) => {
@@ -88,3 +89,20 @@ document.getElementById('mybtn').onclick = async () => {
 	<img src="https://rawr.rs/assets/88x31.png" alt="doeki's 88x31 button">
 </a>`);
 };
+
+async function loadTrack() {
+    const res = await fetch(
+        'https://lastfm-last-played.biancarosa.com.br/tyemil/latest-song',
+    );
+    const { track } = await res.json();
+
+    const cover = document.getElementById('track-cover');
+    const text = document.getElementById('track');
+
+    if (cover) cover.src = track.image[1]['#text'];
+    if (text) text.textContent = `${track.artist['#text']} - ${track.name}`;
+}
+
+window.addEventListener('DOMContentLoaded', async () => {
+    await loadTrack();
+});
