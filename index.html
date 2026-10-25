@@ -7,244 +7,61 @@
             dokinarikekinatorsaurusopsenatoraceaeaceousitislysishydrogenatiz
         </title>
         <link rel="icon" type="image/png" href="./assets/img/favicon.png" />
-        <link rel="stylesheet" href="./assets/styles/reset.css" />
-        <link rel="stylesheet" href="./assets/styles/fonts.css" />
-        <link rel="stylesheet" href="./assets/styles/index.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <script src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js"></script>
+
+        <link rel="stylesheet" href="./assets/styles/main.css" />
     </head>
     <body>
-        <svg
-            style="
-                position: absolute;
-                width: 0;
-                height: 0;
-                pointer-events: none;
-            "
-        >
-            <defs>
-                <filter id="sketch-1">
-                    <feTurbulence
-                        type="fractalNoise"
-                        baseFrequency="0.05"
-                        numOctaves="1"
-                        seed="1"
-                        result="noise"
-                    />
-                    <feDisplacementMap
-                        in="SourceGraphic"
-                        in2="noise"
-                        scale="0"
-                        xChannelSelector="R"
-                        yChannelSelector="G"
-                    />
-                </filter>
-
-                <filter id="sketch-2">
-                    <feTurbulence
-                        type="fractalNoise"
-                        baseFrequency="0.05"
-                        numOctaves="1"
-                        seed="9"
-                        result="noise"
-                    />
-                    <feDisplacementMap
-                        in="SourceGraphic"
-                        in2="noise"
-                        scale="10"
-                        xChannelSelector="R"
-                        yChannelSelector="G"
-                    />
-                </filter>
-            </defs>
-        </svg>
-
-        <template id="window-template">
-            <style>
-                .window {
-                    position: absolute;
-                    width: fit-content;
-                    min-width: 15em;
-                    background-color: var(--background-color);
-                    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.25);
-                }
-
-                .window-titlebar {
-                    display: flex;
-                    align-items: center;
-                    font-family: 'Gamja Flower', sans-serif;
-                    justify-content: space-between;
-                    color: var(--text-on-primary);
-                    background-color: var(--primary-color);
-                    padding: 0.5em;
-                    gap: 1em;
-                    user-select: none;
-                    cursor: grab;
-                }
-
-                .window-title {
-                    font-family: 'Kodchasan', sans-serif;
-                    font-style: italic;
-                    font-weight: 600;
-                }
-
-                .window-close {
-                    border: 1px solid var(--background-color);
-                    padding-left: 0.5em;
-                    padding-right: 0.5em;
-                    cursor: pointer;
-                }
-
-                .window-close:hover {
-                    opacity: 0.5;
-                }
-                .window-content {
-                    padding: 0.25em;
-                    border: solid var(--primary-color);
-                    border-width: 0px 4px 4px 4px;
-                    font-family: 'Gamja Flower', sans-serif;
-                    overflow-y: scroll;
-                }
-
-                #window-icon {
-                    width: 16px;
-                    height: 16px;
-                }
-
-                ::slotted(div.giscus),
-                ::slotted(iframe.giscus-frame) {
-                    max-height: 50vh !important;
-                    overflow-y: auto;
-                }
-
-                @media (max-width: 600px) {
-                    #windowBox {
-                        width: min(20vw, 420px);
-                        max-height: calc(100dvh - 1rem);
-                        overflow: auto;
-                        box-sizing: border-box;
-                    }
-                }
-            </style>
-            <div class="window" id="windowBox">
-                <div class="window-titlebar" id="titleBar">
-                    <img
-                        id="window-icon"
-                        src="./assets/svg/question.svg"
-                        alt="Icon"
-                    />
-                    <span class="window-title">
-                        <slot name="title">Default Title</slot>
-                    </span>
-                    <span class="window-close" id="closeBtn">X</span>
-                </div>
-                <div class="window-content">
-                    <slot>
-                        <p>default content</p>
-                    </slot>
-                </div>
+        <div class="art">
+            <img src="./assets/svg/splash-bg.svg" id="splash-bg" alt="" />
+            <img src="./assets/svg/hydrant.svg" id="splash-hydrant" alt="" />
+            <img src="./assets/svg/personal.svg" id="personal" alt="" />
+            <div id="username-1">
+                dokinarikekinatorsaurusopsenatoraceaeaceousitislysishydrogenatiz
             </div>
-        </template>
-        <div id="background">
-            <img src="./assets/svg/tree.svg" id="bg-tree" />
-            <img src="./assets/svg/flowers-bg-1.svg" />
-            <img src="./assets/svg/flowers-bg-2.svg" />
-            <img src="./assets/svg/flowers-bg-3.svg" />
+            <div id="username-2">
+                dokinarikekinatorsaurusopsenatoraceaeaceousitislysishydrogenatiz
+            </div>
+            <img src="./assets/svg/splash-top.svg" id="splash-top" alt="" />
+            <img src="./assets/svg/splash-drops.svg" id="splash-drops" alt="" />
+
+            <img src="./assets/svg/splash-tl.svg" id="splash-top-left" alt="" />
+            <div id="rect"></div>
+            <img src="./assets/svg/root.svg" id="root" alt="" />
+            <img src="./assets/svg/splash-b.svg" id="splash-bottom" />
         </div>
-        <cool-window
-            icon="./assets/svg/question.svg"
-            data-collision="true"
-            id="window-about"
-        >
-            <span slot="title">About me</span>
-            <p>Old fullstack dev</p>
-            <div id="badges"></div>
-        </cool-window>
-        <cool-window
-            icon="./assets/svg/note.svg"
-            data-collision="true"
-            id="window-listening"
-        >
-            <span slot="title">Listening to</span>
-            <div id="track-container">
-                <img id="track-cover" />
-                <div id="track-meta">
-                    <div id="track-name"></div>
-                    <div id="track-artist"></div>
-                </div>
-            </div>
-        </cool-window>
-        <cool-window
-            icon="./assets/svg/globe.svg"
-            data-collision="true"
-            id="window-webring"
-        >
-            <span slot="title">Webring</span>
 
-            <div class="flex flex-col align-center">
-                <iframe
-                    width="180"
-                    height="180"
-                    src="https://dimden.neocities.org/navlink/"
-                    name="neolink"
-                ></iframe>
-                <div class="flex w-full justify-between">
-                    <a href="https://webring.otomir23.me/rawr/prev">
-                        <button>
-                            <img
-                                src="./assets/svg/arrow-left.svg"
-                                alt="arrow-left"
-                            />
-                        </button>
-                    </a>
-                    <a href="https://webring.otomir23.me/rawr/next">
-                        <button>
-                            <img
-                                src="./assets/svg/arrow-right.svg"
-                                alt="arrow-right"
-                            />
-                        </button>
-                    </a>
-                </div>
+        <div id="content">
+            <p>
+                a full-stack developer and web designer. i work with almost
+                everything. i like experimenting with code and design, trying
+                out ideas just to see how they look or what i can make them do,
+                and occasionally building something useful
+            </p>
+            <div id="section">
+                <a href="#github">github</a>
+                <a href="#github">telegram</a>
             </div>
-        </cool-window>
+            <div id="section">
+                <a href="https://webring.otomir23.me/rawr/prev">prev</a>
+                <a href="https://webring.otomir23.me">otoring</a>
+                <a href="https://webring.otomir23.me/rawr/next">next</a>
+            </div>
+            <div id="buttons">
+                <img
+                    src="./assets/88x31.png"
+                    id="mybtn"
+                    title="Click to copy"
+                />
 
-        <div id="border-container">
-            <div id="footer" data-collision="true">
-                <div id="apps">
-                    <div id="app-about">
-                        <img src="./assets/svg/question.svg" class="wiggle" />
-                        <p>About me</p>
-                    </div>
-                    <div id="app-listening">
-                        <img src="./assets/svg/note.svg" class="wiggle" />
-                        <p>Music status</p>
-                    </div>
-                    <div id="app-webring">
-                        <img src="./assets/svg/globe.svg" class="wiggle" />
-                        <p>Webring</p>
-                    </div>
-                </div>
-                <img src="./assets/svg/theythem.svg" id="they" />
-            </div>
-            <div id="border" data-collision="true">
-                <div id="weather-container">
-                    <img src="./assets/svg/sun.svg" />
-                </div>
-                <div id="username">
-                    <span
-                        class="border-text lexend-zetta-semibold marquee-slower"
-                        >ドキナリケキネイターソールスオップセナトラシーエアシュスアイティスライシスハイドロジェネタイズ
-                    </span>
-                    <span
-                        class="border-text kodchasan-regular marquee"
-                        id="username-en"
-                    >
-                        dokinarikekinatorsaurusopsenatoraceaeaceousitislysishydrogenatiz
-                    </span>
-                </div>
+                <a href="https://belomaxorka.dev"
+                    ><img
+                        src="https://belomaxorka.dev/88x31/terminal.gif"
+                        width="88"
+                        height="31"
+                        alt="belomaxorka"
+                /></a>
             </div>
         </div>
-        <script type="module" src="./assets/scripts/main.js"></script>
+        <script src="./assets/js/main.js"></script>
     </body>
 </html>
