@@ -6,5 +6,6 @@
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
         "source.fixAll.oxlint": "explicit"
-    }
+    },
+    "liveServer.settings.port": 5501
 }

@@ -17,7 +17,7 @@ jobs:
             - name: Prepare build
               run: |
                   mkdir -p build
-                  cp index.html build/
+                  cp elements.css index.html build/
                   cp -r assets build/
 
             - name: Deploy to Nekoweb
@@ -27,5 +27,5 @@ jobs:
                   BUILD_DIR: './build'
                   DEPLOY_DIR: '/doeki.nekoweb.org'
                   CLEANUP: 'False'
-                  DELAY: '30'
+                  DELAY: '6.7'
                   NEKOWEB_PAGENAME: 'doeki'

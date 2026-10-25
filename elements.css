@@ -1,0 +1,21 @@
+.site-box {
+    border: 1px dashed black;
+}
+
+.site-box .sitefeature {
+    border-radius: 4px;
+}
+
+.site-box > a > p {
+    font-family: monospace;
+    color: black;
+}
+
+.site-box > a > span {
+    color: #ffffff;
+}
+
+.site-box .follow {
+    background: black;
+    color: white;
+}
