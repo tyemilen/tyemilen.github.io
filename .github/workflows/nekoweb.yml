@@ -1,25 +1,25 @@
 name: Deploy to Nekoweb
 
 on:
-push:
-branches:
-    - main
+    push:
+        branches:
+            - main
 
 jobs:
-deploy:
-runs-on: ubuntu-latest
-timeout-minutes: 10
+    deploy:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
 
-steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-    - name: Deploy to Nekoweb
-      uses: mp-pinheiro/nekoweb-deploy@0.3.0
-      with:
-          API_KEY: ${{ secrets.NEKOWEB_API_KEY }}
-          BUILD_DIR: './'
-          DEPLOY_DIR: '/'
-          CLEANUP: 'False'
-          DELAY: '0.5'
-          NEKOWEB_PAGENAME: 'doeki'
+            - name: Deploy to Nekoweb
+              uses: mp-pinheiro/nekoweb-deploy@0.3.0
+              with:
+                  API_KEY: ${{ secrets.NEKOWEB_API_KEY }}
+                  BUILD_DIR: './'
+                  DEPLOY_DIR: '/doeki.nekoweb.org'
+                  CLEANUP: 'False'
+                  DELAY: '0.5'
+                  NEKOWEB_PAGENAME: 'doeki'
