@@ -90,6 +90,12 @@ document.getElementById('mybtn').onclick = async () => {
 </a>`);
 };
 
+document.getElementById('mybtn-2').onclick = async () => {
+    await navigator.clipboard.writeText(`
+<a href="https://rawr.rs/" target="_blank" style="image-rendering:pixelated">
+	<img src="https://rawr.rs/assets/88x31v2.png" alt="doeki's 88x31 button">
+</a>`);
+};
 async function loadTrack() {
     const res = await fetch(
         'https://lastfm-last-played.biancarosa.com.br/tyemil/latest-song',

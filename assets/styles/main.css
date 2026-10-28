@@ -78,6 +78,7 @@ body {
 
 @media screen and (max-width: 600px) {
     #content {
+        top: 1%;
         width: 60%;
     }
 }
@@ -87,7 +88,7 @@ body {
     top: 60%;
     left: 0%;
 }
-#section {
+.section {
     display: flex;
     justify-content: space-between;
     align-items: center;
